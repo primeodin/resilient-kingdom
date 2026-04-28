@@ -31,12 +31,13 @@ This public-ready build-out adds `docs/CHAPTER.md`, `examples/transcript.txt`, a
 
 If this repository appears under `primeodin/resilient-kingdom`, read it as a chapter of the retrospective archive. The history is honest current work, not an invented twenty-year activity record. The myth is in the voice and the learning arc; the truth is in the archive note.
 
+## What this repository is
 
-## Public-ready functional build-out
+This is a runnable retrospective chapter for **resilient-kingdom**: container/Kubernetes resilience skeleton with hardening examples.
+It is not padded to impress a counter. The implementation is deliberately compact, tested by `./scripts/smoke.sh`, and written so a reader can follow the idea without spelunking through generated fog.
 
-This chapter now includes a larger runnable implementation: source modules, tests, smoke checks, and examples. The code remains intentionally modest and inspectable, but it is no longer just a sketch. Run `./scripts/smoke.sh` to exercise the working path. Domain: `resilience`.
+## Public-readiness notes
 
-
-## Public-ready functional build-out
-
-This chapter now includes a larger runnable implementation: source modules, tests, smoke checks, and examples. The code remains intentionally modest and inspectable, but it is no longer just a sketch. Run `./scripts/smoke.sh` to exercise the working path. Domain: `resilience`.
+- The year marker is narrative context, not a forged GitHub timestamp.
+- The `.retrospective` tag marks this as part of the honest archive reconstruction.
+- Contributions should improve behavior, tests, explanation, or safety — not bulk.

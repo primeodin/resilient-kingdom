@@ -5,11 +5,36 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchLabels: {app: resilient-kingdom}
+    matchLabels:
+      app: resilient-kingdom
   template:
     metadata:
-      labels: {app: resilient-kingdom}
+      labels:
+        app: resilient-kingdom
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
       containers:
-      - name: kingdom
-        image: resilient-kingdom:retrospective
+        - name: kingdom
+          image: python:3.11.9-slim-bookworm
+          command: ["python", "-m", "resilient_kingdom.core"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            exec:
+              command: ["python", "-c", "import resilient_kingdom.core"]
+            initialDelaySeconds: 5
+            periodSeconds: 10

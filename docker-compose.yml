@@ -1,6 +1,16 @@
 services:
   kingdom:
-    image: python:3.11-slim
-    command: python /app/main.py
+    image: python:3.11.9-slim-bookworm
+    command: ["python", "-m", "resilient_kingdom.core"]
+    working_dir: /app
     volumes:
-      - .:/app
+      - ./resilient_kingdom:/app/resilient_kingdom:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 256m

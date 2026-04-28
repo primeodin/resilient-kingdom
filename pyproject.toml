@@ -1,0 +1,12 @@
+[project]
+name = "resilient-kingdom"
+version = "2020.1.0"
+description = "container/Kubernetes resilience skeleton with hardening examples"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{name = "primeodin", email = "primeodin@runeking.dev"}]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
