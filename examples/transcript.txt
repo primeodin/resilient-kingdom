@@ -1,0 +1,3 @@
+$ ./scripts/smoke.sh
+resilient-kingdom: smoke test for the 2020 retrospective chapter
+The rune holds.

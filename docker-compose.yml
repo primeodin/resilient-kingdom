@@ -1,0 +1,6 @@
+services:
+  kingdom:
+    image: python:3.11-slim
+    command: python /app/main.py
+    volumes:
+      - .:/app
