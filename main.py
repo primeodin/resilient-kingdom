@@ -1,19 +1,31 @@
 #!/usr/bin/env python3
-"""resilient-kingdom: honest retrospective 2020 chapter."""
-import math, random
+import json
+from resilient_kingdom.core import *
 
-def rage_curve(x):
-    return 1.0 / (1.0 + math.exp(-x))
-
-def demo(seed=7):
-    random.seed(seed)
-    total = 0.0
-    for i in range(8):
-        sample = random.random() * 2 - 1
-        total += rage_curve(sample * 3)
-        print("step=%02d sample=%+.3f focus=%.3f" % (i, sample, total/(i+1)))
-    return total/8
-
-if __name__ == "__main__":
-    print("resilient-kingdom")
-    print("mean-focus=%.4f" % demo())
+def main():
+    print(PROJECT + " :: " + DOMAIN)
+    rows=run_scenarios(8)
+    for row in rows:
+        print("{name} energy={energy:.5f} peak={peak:.5f}".format(**row))
+    if DOMAIN == "montecarlo":
+        path, trace, rate = metropolis_paths(steps=80)
+        print("acceptance", round(rate,3)); print(trace.render(4))
+    elif DOMAIN == "entropy":
+        print(json.dumps(compression_report("rune rage winter code"), sort_keys=True))
+    elif DOMAIN == "neural":
+        net=TinyNetwork(); data=battle_dataset(20)
+        for _ in range(4):
+            for x,y in data: net.train_one(x,y)
+        print("prediction", round(net.forward(data[0][0])[1],3))
+    elif DOMAIN == "quantum":
+        c=Circuit().add("H",H).add("X",X).add("H",H)
+        print(c.ascii()); print([round(abs(x)**2,3) for x in c.run()])
+    elif DOMAIN == "rl":
+        q,trace=q_learn(episodes=8); print(trace.render(4))
+    elif DOMAIN == "attention":
+        head=AttentionHead(3); print(head.attend([1,0,1], [[1,0,0],[0,1,0],[1,0,1]], [[1,0],[0,1],[1,1]]))
+    elif DOMAIN == "resilience":
+        cb=CircuitBreaker(); [cb.record(False) for _ in range(3)]; print(cb.status())
+    else:
+        print(simulate(12).render(4))
+if __name__ == "__main__": main()
