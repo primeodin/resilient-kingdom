@@ -20,8 +20,18 @@ If you fork this, keep the honesty file. If you improve the code, say what you c
 
 ## Try it
 
-See the source file in this repository and run the small command shown below. The output is intentionally modest: a number, a trace, a decision, a diagram, or a line of text. Small output is good. Small output lets the mind inspect the machinery.
+```bash
+git clone https://github.com/primeodin/resilient-kingdom.git
+cd resilient-kingdom
+./scripts/smoke.sh
+# or:
+python3 main.py
+python3 -m unittest discover -s tests -q
+```
 
+**Expected** (deterministic on this tree): eight `resilience-00N energy=… peak=…` lines, then `{'failures': 3, 'open_for': 2, 'allow': False}`, then `The rune holds.` from smoke (4 tests OK).
+
+Hand-worked breaker trap (success while open rewrites history): **[docs/why-circuit-breakers.md](docs/why-circuit-breakers.md)**.
 
 ## Built-out archive contents
 
@@ -35,6 +45,12 @@ If this repository appears under `primeodin/resilient-kingdom`, read it as a cha
 
 This is a runnable retrospective chapter for **resilient-kingdom**: container/Kubernetes resilience skeleton with hardening examples.
 It is not padded to impress a counter. The implementation is deliberately compact, tested by `./scripts/smoke.sh`, and written so a reader can follow the idea without spelunking through generated fog.
+
+The runnable core lives in `resilient_kingdom/core.py`: `CircuitBreaker` (threshold + cooldown permission gate), `RageMeter` (latency/failure stress score), and deterministic `scenario`/`run_scenarios` demos. Why trip ≠ recover: [docs/why-circuit-breakers.md](docs/why-circuit-breakers.md).
+
+## Shipped teaching note
+
+- [docs/why-circuit-breakers.md](docs/why-circuit-breakers.md) — hand-worked threshold=3 / cooldown=2 trip matching `main.py`; success-while-open trap; rage meter is a gauge not a gate.
 
 ## Public-readiness notes
 
