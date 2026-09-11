@@ -52,6 +52,14 @@ The runnable core lives in `resilient_kingdom/core.py`: `CircuitBreaker` (thresh
 
 - [docs/why-circuit-breakers.md](docs/why-circuit-breakers.md) — hand-worked threshold=3 / cooldown=2 trip matching `main.py`; success-while-open trap; rage meter is a gauge not a gate.
 
+
+## Help / good first issues
+
+First PR friendly — claim one in a comment:
+
+- **#1** — [`docs/start-here.md`](https://github.com/primeodin/resilient-kingdom/issues/1) walkthrough (`clone` → smoke → breaker status)
+- **#2** — [`examples/breaker-trip.txt`](https://github.com/primeodin/resilient-kingdom/issues/2) annotated trip + tick recover
+
 ## Public-readiness notes
 
 - The year marker is narrative context, not a forged GitHub timestamp.
