@@ -31,6 +31,8 @@ python3 -m unittest discover -s tests -q
 
 **Expected** (deterministic on this tree): eight `resilience-00N energy=… peak=…` lines, then `{'failures': 3, 'open_for': 2, 'allow': False}`, then `The rune holds.` from smoke (4 tests OK).
 
+A step-by-step cold-start walkthrough lives in **[docs/start-here.md](docs/start-here.md)**.
+
 Hand-worked breaker trap (success while open rewrites history): **[docs/why-circuit-breakers.md](docs/why-circuit-breakers.md)**.
 
 ## Built-out archive contents
